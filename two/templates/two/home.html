@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script>
+
+function testfun(){
+
+
+  name = document.getElementById('name').value;
+  pass = document.getElementById('pass').value;
+  emailid =document.getElementById('emailid').value;
+
+  $.ajax({
+      type: 'post',
+      url: 'http://127.0.0.1:8000/create/',
+
+      data: {
+          name: name, pass:pass, email: emailid, csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+      },
+  success: function (data) {
+
+          alert("hi");
+
+
+      /*document.write(name+ '  ' + pass + ' ' + emailid);
+
+      }
+
+  });
+
+}
+
+</script>
+
+
+    <form>
+        {% csrf_token%}
+
+name:<input type="text" id="name" name="name" />
+password <input type="password" id="pass" name="pass" />
+emailid <input type="text" id="emailid" name="emailid" />
+checkbox <input type="checkbox" id="checkbox" name="checkbox" />
+<input type="button" value="submit" onclick="testfun()" />
+
+
+
+
+
+</form>
+
+
+
+    <div id="out">
+
+
+
+</div>
+
+
+{% endblock %}
